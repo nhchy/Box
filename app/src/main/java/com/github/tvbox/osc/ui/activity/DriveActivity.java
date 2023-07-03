@@ -286,9 +286,27 @@ public class DriveActivity extends BaseActivity {
         vodInfo.seriesFlags = new ArrayList<>();
         vodInfo.seriesFlags.add(new VodInfo.VodSeriesFlag("drive"));
         vodInfo.seriesMap = new LinkedHashMap<>();
-        VodInfo.VodSeries series = new VodInfo.VodSeries(fileUrl, "tvbox-drive://" + fileUrl);
         List<VodInfo.VodSeries> seriesList = new ArrayList<>();
-        seriesList.add(series);
+        
+if(fileUrl.endsWith(".PL")){
+   try {
+       File file = new File(fileUrl);
+       BufferedReader reader = new BufferedReader(new FileReader(file));
+       String line;   
+       while ((line = reader.readLine()) != null) {
+           VodInfo.VodSeries series = new VodInfo.VodSeries(line, "tvbox-drive://" + line);
+           seriesList.add(series);
+       }    
+       reader.close();
+   } catch (Exception e) {
+       Toast.makeText(DriveActivity.this, "读PL出错了", Toast.LENGTH_SHORT).show();    
+       return;
+   }
+} else {
+    VodInfo.VodSeries series = new VodInfo.VodSeries(fileUrl, "tvbox-drive://" + fileUrl);
+    seriesList.add(series);
+}
+        
         vodInfo.seriesMap.put("drive", seriesList);
         Bundle bundle = new Bundle();
         bundle.putBoolean("newSource", true);
