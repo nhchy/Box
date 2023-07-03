@@ -378,6 +378,7 @@ public class StorageDriveType {
             "PIV",
             "PJR",
             "PJS",
+            "PL",
             "PLAYLIST",
             "PLOT",
             "PLOTDOC",
