@@ -290,7 +290,7 @@ public class DriveActivity extends BaseActivity {
         vodInfo.seriesMap = new LinkedHashMap<>();
         List<VodInfo.VodSeries> seriesList = new ArrayList<>();
         
-if(fileUrl.endsWith(".PL")){
+if(fileUrl.endsWith(".PL")||fileUrl.endsWith(".pl")){
    try {
        File file = new File(fileUrl);
        BufferedReader reader = new BufferedReader(new FileReader(file));
